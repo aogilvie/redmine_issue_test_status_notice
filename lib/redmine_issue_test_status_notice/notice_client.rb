@@ -1,10 +1,10 @@
 require 'httpclient'
 
-module RedmineIssueAssignNotice
+module RedmineIssueTestStatusNotice
   class NoticeClient
     def notice(message, url)
 
-      Rails.logger.debug "[RedmineIssueAssignNotice] NoticeClient#notice url:#{url}"
+      Rails.logger.debug "[RedmineIssueTestStatusNotice] NoticeClient#notice url:#{url}"
 
       begin
         client = HTTPClient.new
@@ -16,21 +16,21 @@ module RedmineIssueAssignNotice
           begin
             res = conn.pop
             if !HTTP::Status.successful?(res.status) 
-              Rails.logger.warn("[RedmineIssueAssignNotice] Failed request to #{url}")
+              Rails.logger.warn("[RedmineIssueTestStatusNotice] Failed request to #{url}")
               Rails.logger.warn(res.inspect)
               return
             end
 
-            Rails.logger.debug "[RedmineIssueAssignNotice] NoticeClient#notice success"
+            Rails.logger.debug "[RedmineIssueTestStatusNotice] NoticeClient#notice success"
 
           rescue Exception => e
-            Rails.logger.warn("[RedmineIssueAssignNotice] Failed request to #{url}")
+            Rails.logger.warn("[RedmineIssueTestStatusNotice] Failed request to #{url}")
             Rails.logger.warn(e.inspect)
           end
         end
 
       rescue Exception => e
-        Rails.logger.warn("[RedmineIssueAssignNotice] Failed request to #{url}")
+        Rails.logger.warn("[RedmineIssueTestStatusNotice] Failed request to #{url}")
         Rails.logger.warn(e.inspect)
       end
     end

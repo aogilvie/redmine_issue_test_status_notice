@@ -1,4 +1,4 @@
-module RedmineIssueAssignNotice
+module RedmineIssueTestStatusNotice
   module Formatter
 
     class Slack
